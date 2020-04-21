@@ -94,5 +94,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BookCase.ViewModel\BookCase.ViewModel.csproj">
+      <Project>{ae22ec9c-92dc-4df9-a5e5-7ed740c64b8e}</Project>
+      <Name>BookCase.ViewModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

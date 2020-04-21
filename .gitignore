@@ -50,3 +50,11 @@ Makefile
 
 # Microsoft Fakes
 /BookCase/.vs/BookCase/v16/Server/sqlite3/db.lock
+/BookCase/BookCase.ViewModel/bin/Debug
+/BookCase/BookCase.View/bin/Debug
+/BookCase/BookCase.Helpers/bin/Debug
+/BookCase/BookCase.Common/bin/Debug
+/BookCase/BookCase.Common/obj/Debug
+/BookCase/BookCase.Helpers/obj/Debug
+/BookCase/BookCase.View/obj/Debug
+/BookCase/BookCase.ViewModel/obj/Debug

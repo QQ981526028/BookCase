@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace BookCase.ViewModel
 {
-    public class Class1
+    public class MainWindowViewModel
     {
+        public MainWindowViewModel()
+        {
+        }
     }
 }
