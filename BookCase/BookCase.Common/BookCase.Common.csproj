@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IViewModels\IDataService.cs" />
+    <Compile Include="IViewModels\DataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewNames.cs" />
   </ItemGroup>

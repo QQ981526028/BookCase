@@ -4,12 +4,25 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookCase.View"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        mc:Ignorable="d" x:Name="mainWindow"
+        Title="MainWindow">
     <Window.DataContext>
         <Binding Path="MainWindowViewModel" Source="{StaticResource Locator}"/>
     </Window.DataContext>
-    <Grid>
-        
-    </Grid>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding  DataContext.LoadCommand,ElementName=mainWindow}">
+            </i:InvokeCommandAction>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Viewbox>
+        <Grid Width="1920" Height="1080">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="71*"/>
+                <ColumnDefinition Width="121*"/>
+            </Grid.ColumnDefinitions>
+            <Frame Grid.Row="0" x:Name="MainFrame" NavigationUIVisibility="Hidden" JournalOwnership="UsesParentJournal" Grid.ColumnSpan="2"/>
+        </Grid>
+    </Viewbox>
 </Window>

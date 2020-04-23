@@ -15,5 +15,10 @@ namespace BookCase.Common
         /// 主窗口Key
         /// </summary>
         public const string MAIN_VIEW = "MainWindowView";
+        /// <summary>
+        /// 测试窗口Key
+        /// </summary>
+        public const string TEXT_VIEW = "TextView";
+        
     }
 }

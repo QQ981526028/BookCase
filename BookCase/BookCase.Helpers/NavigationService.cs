@@ -11,6 +11,9 @@ using System.Windows.Media;
 
 namespace BookCase.Helpers
 {
+    /// <summary>
+    /// 封装导航服务
+    /// </summary>
     public class NavigationService : ViewModelBase, INavigationService
     {
         #region 成员变量
@@ -52,7 +55,6 @@ namespace BookCase.Helpers
             pageUrlByKey = new Dictionary<string, Uri>();
             pageInstancesByKey = new Dictionary<string, Page>();
             historic = new List<string>();
-            //LogManagers.Logger.Log("NavigationService已实例化！");
         }
 
         /// <summary>
@@ -83,14 +85,18 @@ namespace BookCase.Helpers
             }
         }
         /// <summary>
-        /// 跳转
+        /// 跳转下一个页面
         /// </summary>
         /// <param name="pageKey"></param>
         public void NavigateTo(string pageKey)
         {
             NavigateTo(pageKey, "Next");
         }
-
+        /// <summary>
+        /// 页面跳转
+        /// </summary>
+        /// <param name="pageKey">页面配置的key</param>
+        /// <param name="parameter">参数</param>
         public void NavigateTo(string pageKey, object parameter)
         {
             if (isNavigating)
@@ -138,7 +144,7 @@ namespace BookCase.Helpers
                         }
                     }
                     Parameter = parameter;
-                    if (parameter.ToString().Equals("Next"))
+                    if (parameter.ToString().Equals("Next"))//记录可以用于回退功能的页面跳转历史
                     {
                         historic.Add(pageKey);
                     }
@@ -154,7 +160,7 @@ namespace BookCase.Helpers
         /// 配置导航页面地址与Key值字典
         /// </summary>
         /// <param name="key">Key值</param>
-        /// <param name="pageType">地址</param>
+        /// <param name="pageType">页面地址</param>
         public void Configure(string key, Uri pageType)
         {
             lock (pageUrlByKey)
@@ -170,20 +176,30 @@ namespace BookCase.Helpers
             }
         }
         #region 辅助方法
+        /// <summary>
+        /// 框架中执行页面跳转后
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CurrentFrame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
             Page page = e.Content as Page;
-            this.AddPageInstance(CurrentPageKey, page);
+            this.AddPage(CurrentPageKey, page);
         }
-        private void AddPageInstance(string key, Page instance)
+        /// <summary>
+        /// 添加实例了的页面以及key值
+        /// </summary>
+        /// <param name="key">key</param>
+        /// <param name="instance">页面</param>
+        private void AddPage(string key, Page page)
         {
             lock (pageInstancesByKey)
             {
-                if (!pageInstancesByKey.ContainsKey(key) && instance != null)
+                if (!pageInstancesByKey.ContainsKey(key) && page != null)
                 {
                     if (this.Parameter == null)
                     {
-                        pageInstancesByKey.Add(key, instance);
+                        pageInstancesByKey.Add(key, page);
                     }
                     else
                     {
@@ -191,12 +207,18 @@ namespace BookCase.Helpers
                         bool.TryParse(this.Parameter.ToString(), out reloadPage);
                         if (!reloadPage)
                         {
-                            pageInstancesByKey.Add(key, instance);
+                            pageInstancesByKey.Add(key, page);
                         }
                     }
                 }
             }
         }
+        /// <summary>
+        /// 获取导航的页面
+        /// </summary>
+        /// <param name="parent">导航对象（页面）</param>
+        /// <param name="name">对象名称（页面名称）</param>
+        /// <returns></returns>
         private FrameworkElement GetDescendantFromName(DependencyObject parent, string name)
         {
             var count = VisualTreeHelper.GetChildrenCount(parent);

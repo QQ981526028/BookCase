@@ -1,0 +1,22 @@
+﻿<Page x:Class="BookCase.View.TextView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BookCase.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="TextView">
+    <Page.DataContext>
+        <Binding Path="TextViewModel" Source="{StaticResource Locator}"/>
+    </Page.DataContext>
+    <Grid Background="#ffffff">
+        <TextBlock Text="这是测试界面" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="30"/>
+        <TextBlock FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100 100 0 0">
+            <Run Text="PageName:"/>
+            <Run Text="{Binding PageName}"/>
+        </TextBlock>
+
+
+    </Grid>
+</Page>
