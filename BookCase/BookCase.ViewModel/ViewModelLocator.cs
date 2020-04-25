@@ -23,6 +23,7 @@ namespace BookCase.ViewModel
             SimpleIoc.Default.Register<IDataService, DataService>();//公共变量交换器
             SimpleIoc.Default.Register<MainWindowViewModel>();//主窗口ViewModel
             SimpleIoc.Default.Register<TextViewModel>();//测试窗口ViewModel
+            SimpleIoc.Default.Register<HomePageViewModel>();//测试窗口ViewModel
             //创建导航服务
             var navigationService = this.CreateNavigationService();
             SimpleIoc.Default.Register<INavigationService>(() => navigationService);
@@ -48,6 +49,16 @@ namespace BookCase.ViewModel
             }
         }
         /// <summary>
+        /// 首页
+        /// </summary>
+        public HomePageViewModel HomePageViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<HomePageViewModel>();
+            }
+        }
+        /// <summary>
         /// 创建导航服务
         /// </summary>
         /// <returns></returns>
@@ -58,6 +69,8 @@ namespace BookCase.ViewModel
             navigationService.Configure(ViewNames.MAIN_VIEW, new Uri("/MainWindow.xaml", UriKind.RelativeOrAbsolute));
             //测试窗口页
             navigationService.Configure(ViewNames.TEXT_VIEW, new Uri("/TextView.xaml", UriKind.RelativeOrAbsolute));
+            //测试窗口页
+            navigationService.Configure(ViewNames.HOMEPAGE_VIEW, new Uri("/HomePageView.xaml", UriKind.RelativeOrAbsolute));
             return navigationService;
         }
     }

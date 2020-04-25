@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:BookCase.View"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         mc:Ignorable="d" x:Name="mainWindow"
+        ResizeMode="NoResize" WindowStyle="None"  AllowDrop="False" 
+        WindowStartupLocation="CenterScreen" 
         Title="MainWindow">
     <Window.DataContext>
         <Binding Path="MainWindowViewModel" Source="{StaticResource Locator}"/>
@@ -18,11 +20,7 @@
     </i:Interaction.Triggers>
     <Viewbox>
         <Grid Width="1920" Height="1080">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="71*"/>
-                <ColumnDefinition Width="121*"/>
-            </Grid.ColumnDefinitions>
-            <Frame Grid.Row="0" x:Name="MainFrame" NavigationUIVisibility="Hidden" JournalOwnership="UsesParentJournal" Grid.ColumnSpan="2"/>
+            <Frame Grid.Row="0" x:Name="MainFrame" NavigationUIVisibility="Hidden" JournalOwnership="UsesParentJournal"/>
         </Grid>
     </Viewbox>
 </Window>
