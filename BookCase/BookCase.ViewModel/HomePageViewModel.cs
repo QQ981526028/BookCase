@@ -33,7 +33,7 @@ namespace BookCase.ViewModel
         /// <summary>
         /// 借书
         /// </summary>
-        public ICommand LendCommand => new RelayCommand(LendBook);
+        public ICommand BorrowCommand => new RelayCommand(BorrowBook);
         /// <summary>
         /// 还书
         /// </summary>
@@ -45,13 +45,13 @@ namespace BookCase.ViewModel
         /// <summary>
         /// 登陆
         /// </summary>
-        public ICommand LoginCommand => new RelayCommand(LoginBook);
+        public ICommand LoginCommand => new RelayCommand(Login);
         #endregion
         #region 方法
         /// <summary>
         /// 借书
         /// </summary>
-        private void LendBook()
+        private void BorrowBook()
         {
 
         }
@@ -72,7 +72,7 @@ namespace BookCase.ViewModel
         /// <summary>
         /// 登陆
         /// </summary>
-        private void LoginBook()
+        private void Login()
         {
 
         }

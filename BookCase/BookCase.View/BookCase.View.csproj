@@ -58,13 +58,33 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BorrowBookView.xaml.cs">
+      <DependentUpon>BorrowBookView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HomePageView.xaml.cs">
       <DependentUpon>HomePageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReservationBookView.xaml.cs">
+      <DependentUpon>ReservationBookView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReturnBookView.xaml.cs">
+      <DependentUpon>ReturnBookView.xaml</DependentUpon>
     </Compile>
     <Compile Include="TextView.xaml.cs">
       <DependentUpon>TextView.xaml</DependentUpon>
     </Compile>
+    <Page Include="BorrowBookView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HomePageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -80,6 +100,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ReservationBookView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReturnBookView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TextView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

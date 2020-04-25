@@ -23,6 +23,22 @@ namespace BookCase.Common
         /// 首页Key
         /// </summary>
         public const string HOMEPAGE_VIEW = "HomePageView";
+        /// <summary>
+        /// 借书Key
+        /// </summary>
+        public const string BORROWBOOK_VIEW = "BorrowBookView";
+        /// <summary>
+        /// 还书Key
+        /// </summary>
+        public const string RETURNBOOK_VIEW = "ReturnBookView";
+        /// <summary>
+        /// 预约Key
+        /// </summary>
+        public const string RESERVATIONBOOK_VIEW = "ReservationBookView";
+        /// <summary>
+        /// 登陆Key
+        /// </summary>
+        public const string LOGIN_VIEW = "LoginView";
 
     }
 }
