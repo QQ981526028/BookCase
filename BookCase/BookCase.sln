@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookCase.Common", "BookCase
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{77C0C6F9-9156-4AA9-9CCE-85DB81B262E7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookCase.UserControls", "BookCase.UserControls\BookCase.UserControls.csproj", "{7FB3EE62-85C8-4941-95A1-49E3DC993ED9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{138C906F-6CFC-4D60-AF20-CD64C3ADEDB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{138C906F-6CFC-4D60-AF20-CD64C3ADEDB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{138C906F-6CFC-4D60-AF20-CD64C3ADEDB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FB3EE62-85C8-4941-95A1-49E3DC993ED9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FB3EE62-85C8-4941-95A1-49E3DC993ED9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FB3EE62-85C8-4941-95A1-49E3DC993ED9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FB3EE62-85C8-4941-95A1-49E3DC993ED9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,6 +67,7 @@ Global
 		{AE22EC9C-92DC-4DF9-A5E5-7ED740C64B8E} = {9BD3F282-68FE-4DC8-89D7-973B454211AD}
 		{37781CFF-4C6B-4CDC-8BE5-37D02D5B2467} = {0FCBD4A4-E937-463A-9917-3566EDCCB0F7}
 		{138C906F-6CFC-4D60-AF20-CD64C3ADEDB7} = {F76F6658-6E29-40AB-A82B-A452ADA04ABC}
+		{7FB3EE62-85C8-4941-95A1-49E3DC993ED9} = {F76F6658-6E29-40AB-A82B-A452ADA04ABC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5D2281E5-B0E8-4AFA-9480-EE6962A90067}

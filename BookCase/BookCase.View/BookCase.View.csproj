@@ -140,6 +140,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BookCase.UserControls\BookCase.UserControls.csproj">
+      <Project>{7fb3ee62-85c8-4941-95a1-49e3dc993ed9}</Project>
+      <Name>BookCase.UserControls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BookCase.ViewModel\BookCase.ViewModel.csproj">
       <Project>{ae22ec9c-92dc-4df9-a5e5-7ed740c64b8e}</Project>
       <Name>BookCase.ViewModel</Name>

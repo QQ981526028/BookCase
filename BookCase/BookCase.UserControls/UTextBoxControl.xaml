@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="BookCase.UserControls.UTextBoxControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BookCase.UserControls"
+             mc:Ignorable="d">
+    <Grid>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+            <Label x:Name="lblRedStar" Content="*" Foreground="Red" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="txtInputBox" VerticalContentAlignment="Center"  Width="300" Height="25"/>
+            <Border  Name="IsErrorShowBorder" BorderThickness="1" CornerRadius="15">
+                <Label Name="IsError"  Foreground="Red" Background="LightPink" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">错误信息</Label>
+            </Border>
+            <TextBox VerticalContentAlignment="Center" Text="（必填）" Height="25" x:Name="txtErrorShow"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
