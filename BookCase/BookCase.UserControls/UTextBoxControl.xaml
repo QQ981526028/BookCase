@@ -4,15 +4,31 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BookCase.UserControls"
+             xmlns:converters="clr-namespace:BookCase.Converters;assembly=BookCase.Converters"
              mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:BoolToVisibilityConverter x:Key="boolToVisibilityConverter"/>
+        <Style x:Key="EntryFieldStyle" TargetType="Grid" >
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="20,0" />
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
             <Label x:Name="lblRedStar" Content="*" Foreground="Red" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
-            <TextBox x:Name="txtInputBox" VerticalContentAlignment="Center"  Width="300" Height="25"/>
-            <Border  Name="IsErrorShowBorder" BorderThickness="1" CornerRadius="15">
-                <Label Name="IsError"  Foreground="Red" Background="LightPink" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">错误信息</Label>
-            </Border>
-            <TextBox VerticalContentAlignment="Center" Text="（必填）" Height="25" x:Name="txtErrorShow"/>
+            <Grid Style="{StaticResource EntryFieldStyle}">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <TextBlock x:Name="txtWaterMark" Margin="5,2" VerticalAlignment="Center" Background="Transparent"/>
+                    <TextBox x:Name="txtInputBox" VerticalContentAlignment="Center" Width="300" Height="25" Background="Transparent"/>
+                </Grid>
+            </Grid>
+            <Label x:Name="lblErroeMessage" Foreground="Red" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="异常消息"/>
+            <Label x:Name="lblTip" VerticalContentAlignment="Center" Content="(必填)" Foreground="Red" Height="25"/>
         </StackPanel>
     </Grid>
 </UserControl>
