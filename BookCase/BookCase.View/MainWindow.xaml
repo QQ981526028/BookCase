@@ -8,7 +8,7 @@
         mc:Ignorable="d" x:Name="mainWindow"
         ResizeMode="NoResize" WindowStyle="None"  AllowDrop="False" 
         WindowStartupLocation="CenterScreen" 
-        Title="MainWindow">
+        Title="MainWindow" Width="1920" Height="1080">
     <Window.DataContext>
         <Binding Path="MainWindowViewModel" Source="{StaticResource Locator}"/>
     </Window.DataContext>
@@ -18,9 +18,7 @@
             </i:InvokeCommandAction>
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    <Viewbox>
-        <Grid Width="1920" Height="1080">
-            <Frame Grid.Row="0" x:Name="MainFrame" NavigationUIVisibility="Hidden" JournalOwnership="UsesParentJournal"/>
-        </Grid>
-    </Viewbox>
+    <Grid >
+        <Frame Grid.Row="0" x:Name="MainFrame" NavigationUIVisibility="Hidden" JournalOwnership="UsesParentJournal"/>
+    </Grid>
 </Window>

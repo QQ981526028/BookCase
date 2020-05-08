@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:BookCase.View"
       xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
       mc:Ignorable="d" 
-      d:DesignHeight="1080" d:DesignWidth="1920"
+      d:DesignHeight="1080" d:DesignWidth="1920" HorizontalAlignment="Center" VerticalAlignment="Center"
       Title="HomePageView" DataContext="{Binding Source={StaticResource Locator},Path=HomePageViewModel}">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
