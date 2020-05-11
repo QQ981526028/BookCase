@@ -46,6 +46,10 @@ namespace BookCase.ViewModel
         /// 登陆
         /// </summary>
         public ICommand LoginCommand => new RelayCommand(Login);
+        /// <summary>
+        /// 测试窗体
+        /// </summary>
+        public ICommand TestCommand => new RelayCommand(Test);
         #endregion
         #region 方法
         /// <summary>
@@ -75,6 +79,10 @@ namespace BookCase.ViewModel
         private void Login()
         {
             navigationService.NavigateTo(ViewNames.LOGIN_VIEW);
+        }
+        public void Test()
+        {
+            navigationService.NavigateTo(ViewNames.TEXT_VIEW);
         }
         #endregion
     }

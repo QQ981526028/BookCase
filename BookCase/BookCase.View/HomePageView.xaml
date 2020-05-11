@@ -37,5 +37,7 @@
             <Button Grid.Row="1" Grid.Column="1" Height="200" Width="400" Background="Aqua" Content="登录" FontSize="42"
                     Command="{Binding LoginCommand}"/>
         </Grid>
+        <Button Height="100" Width="200" Background="Gray" Content="测试窗体" FontSize="42" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                    Command="{Binding TestCommand}"/>
     </Grid>
 </Page>

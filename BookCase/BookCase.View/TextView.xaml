@@ -11,12 +11,16 @@
         <Binding Path="TextViewModel" Source="{StaticResource Locator}"/>
     </Page.DataContext>
     <Grid Background="#ffffff">
-        <TextBlock Text="这是测试界面" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="30"/>
+        <!--<TextBlock Text="这是测试界面" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="30"/>
         <TextBlock FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100 100 0 0">
             <Run Text="PageName:"/>
             <Run Text="{Binding PageName}"/>
-        </TextBlock>
-
+        </TextBlock>-->
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+            <TextBox Height="200" Width="400" FontSize="32" Text="{Binding LeftText}" Margin="20"/>
+            <Button Content="转换" Height="100" Width="200" FontSize="32" Command="{Binding TurnToCommand}"/>
+            <TextBox Height="200" Width="400" FontSize="32" Text="{Binding RightText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="20"/>
+        </StackPanel>
 
     </Grid>
 </Page>
