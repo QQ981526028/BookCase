@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UButtonControl.cs" />
     <Compile Include="UTextBoxControl.xaml.cs">
       <DependentUpon>UTextBoxControl.xaml</DependentUpon>
     </Compile>

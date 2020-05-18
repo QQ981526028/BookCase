@@ -5,8 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BookCase.View"
       xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+      xmlns:controlExtend="clr-namespace:BookCase.UserControls;assembly=BookCase.UserControls"
       mc:Ignorable="d" 
-      d:DesignHeight="1080" d:DesignWidth="1920" HorizontalAlignment="Center" VerticalAlignment="Center"
+      d:DesignHeight="1920" d:DesignWidth="1080" HorizontalAlignment="Center" VerticalAlignment="Center"
       Title="HomePageView" DataContext="{Binding Source={StaticResource Locator},Path=HomePageViewModel}">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -18,26 +19,117 @@
             </i:InvokeCommandAction>
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    <Grid Background="#ffffff">
-        <Grid Width="1000" Height="800" Background="Transparent">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://SiteOfOrigin:,,,/Images/首页背景图.png"/>
+        </Grid.Background>
+        <Grid Height="1010" VerticalAlignment="Bottom">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="215"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="179"/>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Button Grid.Row="0" Grid.Column="0" Height="200" Width="400" Background="Aqua" Content="借书" FontSize="42"
-                    Command="{Binding BorrowCommand}"/>
-            <Button Grid.Row="0" Grid.Column="1" Height="200" Width="400" Background="Aqua" Content="还书" FontSize="42"
-                    Command="{Binding ReturnCommand}"/>
-            <Button Grid.Row="1" Grid.Column="0" Height="200" Width="400" Background="Aqua" Content="预约" FontSize="42"
-                    Command="{Binding ReservationCommand}"/>
-            <Button Grid.Row="1" Grid.Column="1" Height="200" Width="400" Background="Aqua" Content="登录" FontSize="42"
-                    Command="{Binding LoginCommand}"/>
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Height="86" VerticalAlignment="Bottom" Margin="60 0 0 18">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDown">
+                        <i:InvokeCommandAction Command="{Binding AdminLoginCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Image Source="{Binding LogoUri}" Height="86" Stretch="Fill"/>
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding LogoTitle}" VerticalAlignment="Center" FontSize="44" Foreground="#FFFFFF" 
+                               Margin="16 0 0 0"/>
+                    <TextBlock Text="{Binding ENLogoTitle}" FontSize="24" Foreground="#FFFFFF" Opacity="0.6" 
+                               Margin="16 0 0 0" Visibility="{Binding IsEnglishLogoTitleVisible}"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Orientation="Vertical" Margin="0 30 0 0">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Height="410">
+                    <Button Margin="12 0 12 0" Content="{Binding BtnReServationContent}" Visibility="{Binding IsReServationVisibility}"
+                            Style="{DynamicResource HomePageButtonStyle}" Command="{Binding TakeBookCodeCommand}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border CornerRadius ="16 16 16 16" Width="304" Height="410" Background="#ffffff">
+                                    <Grid>
+                                        <Image Source="pack://SiteOfOrigin:,,,/Images/预约取书.png" Stretch="Fill" Width="120" Height="120" Margin="92 88 0 0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                        <TextBlock Margin="0 231 0 0" Padding="0 0" Foreground="#2c313e" FontSize="48" 
+                                                   VerticalAlignment="Top" HorizontalAlignment="Center" Text="{Binding Path=Content,RelativeSource={RelativeSource AncestorType={x:Type Button}}}"/>
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button Margin="12 0 12 0" Content="{Binding BtnBorrowBookContent}" 
+                            Style="{DynamicResource HomePageButtonStyle}" Command="{Binding BorrowBookCommand}" Visibility="{Binding IsBorrowBookVisibility}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border CornerRadius ="16 16 16 16" Width="304" Height="410" Background="#ffffff">
+                                    <Grid>
+                                        <Image Source="pack://SiteOfOrigin:,,,/Images/借书.png" Stretch="Fill" Width="120" Height="120" Margin="92 88 0 0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                        <TextBlock Margin="0 231 0 0" Padding="0 0" Foreground="#2c313e" FontSize="48"
+                                                   VerticalAlignment="Top" HorizontalAlignment="Center" Text="{Binding Path=Content,RelativeSource={RelativeSource AncestorType={x:Type Button}}}"/>
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button Margin="12 0 12 0" Content="{Binding BtnReturnBookContent}" 
+                            Style="{DynamicResource HomePageButtonStyle}" Command="{Binding ReturnBookCommand}" Visibility="{Binding IsReturnBookVisibility}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border CornerRadius ="16 16 16 16" Width="304" Height="410" Background="#ffffff">
+                                    <Grid>
+                                        <Image Source="pack://SiteOfOrigin:,,,/Images/还书.png" Stretch="Fill" Width="120" Height="120" Margin="92 88 0 0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                        <TextBlock Margin="0 231 0 0" Padding="0 0" Foreground="#2c313e" FontSize="48"
+                                                   VerticalAlignment="Top" HorizontalAlignment="Center" Text="{Binding Path=Content,RelativeSource={RelativeSource AncestorType={x:Type Button}}}"/>
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+                <StackPanel Margin="0 24 0 0" Orientation="Horizontal" HorizontalAlignment="Center" Height="140">
+                    <Button Margin="12 0 12 0" 
+                            Style="{DynamicResource HomePageButtonStyle}" Command="{Binding ReturnBigBookCommand}" Visibility="{Binding IsReturnOverSizeBookVisibility}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border CornerRadius ="16 16 16 16" Width="468" Height="140" Background="#ffffff">
+                                    <Grid>
+                                        <Image Source="pack://SiteOfOrigin:,,,/Images/超厚图书.png" Stretch="Fill" Width="68" Height="68" 
+                                               Margin="54 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <StackPanel Margin="142 0 0 0" Orientation="Vertical" VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding BtnReturnBigBookContent}" Foreground="#ffffff" FontSize="36"/>
+                                            <TextBlock Text="{Binding BtnReturnBigBookTip}" Foreground="#ffffff" FontSize="20" Opacity="0.8"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button Margin="12 0 12 0" 
+                            Style="{DynamicResource HomePageButtonStyle}" Command="{Binding PersonalCenterCommand}" Visibility="{Binding IsPersonalCenterVisibility}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border CornerRadius ="16 16 16 16" Width="468" Height="140" Background="#ffffff">
+                                    <Grid>
+                                        <Image Source="pack://SiteOfOrigin:,,,/Images/个人中心.png" Stretch="Fill" Width="68" Height="68" 
+                                               Margin="54 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <TextBlock Margin="142 0 0 0" Foreground="#ffffff" FontSize="36"
+                                                   VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding BtnPersonalCenterContent}"/>
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+            <TextBlock Grid.Row="2" Margin="0 0 0 36" Foreground="#ffffff" Opacity="0.8" FontSize="24" TextAlignment="Center" VerticalAlignment="Bottom"
+                           Text="{Binding TxtPageBottomContent}"/>
+            <controlExtend:UButtonControl Grid.Row="2" Width="164" Height="52" Content="ENGLISH" FontSize="32" Foreground="#FFFFFF"
+                                        CornerRadius="4" Background="Transparent" BorderBrush="#ffffff" BorderThickness ="2"
+                                        VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 0 60 26"
+                                        Command="{Binding MultiLanguageCommand}" Visibility="{Binding IsShowLanguageChangeVisible}"/>
+
         </Grid>
-        <Button Height="100" Width="200" Background="Gray" Content="测试窗体" FontSize="42" HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                    Command="{Binding TestCommand}"/>
     </Grid>
 </Page>
