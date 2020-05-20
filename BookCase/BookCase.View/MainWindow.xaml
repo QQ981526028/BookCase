@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookCase.View"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-        mc:Ignorable="d" x:Name="mainWindow"
-       
-        WindowStartupLocation="CenterScreen" 
-        Title="MainWindow" Width="1920" Height="1080">
+        mc:Ignorable="d" x:Name="mainWindow"  
+        ResizeMode="NoResize" WindowStyle="None"  AllowDrop="False" 
+        WindowStartupLocation="CenterScreen" WindowState="Maximized" 
+        Title="MainWindow" Width="1080" Height="1920">
     <Window.DataContext>
         <Binding Path="MainWindowViewModel" Source="{StaticResource Locator}"/>
     </Window.DataContext>
@@ -18,7 +18,9 @@
             </i:InvokeCommandAction>
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    <Grid >
-        <Frame Grid.Row="0" x:Name="MainFrame" NavigationUIVisibility="Hidden" JournalOwnership="UsesParentJournal"/>
-    </Grid>
+    <Viewbox>
+        <Grid Height="1920" Width="1080">
+            <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" JournalOwnership="UsesParentJournal"/>
+        </Grid>
+    </Viewbox>
 </Window>

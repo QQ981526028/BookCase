@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="clr-namespace:BookCase.ViewModel;assembly=BookCase.ViewModel"
              xmlns:effect="clr-namespace:GrayscaleEffect;assembly=GrayscaleEffect"
+             xmlns:controlExtend="clr-namespace:BookCase.UserControls;assembly=BookCase.UserControls"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -16,34 +17,88 @@
                 <Setter Property="HorizontalAlignment" Value="Center"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
             </Style>
-            <!--首页按钮样式-->
-            <Style x:Key="HomePageButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseSoundButton}">
-                <Setter Property="BorderThickness" Value="0"/>
-                <Setter Property="FontSize" Value="32"/>
-                <Setter Property="Background" Value="#00000000"/>
-                <Setter Property="Foreground" Value="#FFFFFFFF"/>
+            <!--按钮点击样式-->
+            <Style x:Key="BaseSoundButton" TargetType="{x:Type Button}">
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect  Color="#5C85FF" Direction="270" ShadowDepth="6" BlurRadius="3" Opacity="0.2" />
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!--公共按钮默认样式-->
+            <controlExtend:UButtonControlPropertyConverter x:Key="UButtonControlPropertyConverter"></controlExtend:UButtonControlPropertyConverter>
+            <Style  TargetType="{x:Type controlExtend:UButtonControl}">
+                <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                <Setter Property="Background" Value="#FFDDDDDD"/>
+                <Setter Property="BorderBrush" Value="#FF707070"/>
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                <Setter Property="Padding" Value="0"/>
                 <Setter Property="Template">
                     <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type Button}">
+                        <ControlTemplate TargetType="{x:Type controlExtend:UButtonControl}">
                             <Grid RenderTransformOrigin="0.5,0.5" x:Name="RootGrid">
-                                <Rectangle x:Name ="OuterRing"  Fill="{TemplateBinding Background}"/>
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Border x:Name="border" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                Background="{TemplateBinding Background}" 
+                                CornerRadius="{TemplateBinding CornerRadius}"
+                                Opacity="{TemplateBinding Opacity}"
+                                SnapsToDevicePixels="true">
+                                </Border>
+                                <StackPanel Orientation="{TemplateBinding StackPanelOrientation}" Margin="{TemplateBinding  Padding}" 
+                                    VerticalAlignment="{TemplateBinding StackPanelVerticalAlignment}"
+                                    HorizontalAlignment="{TemplateBinding StackPanelHorizontalAlignment}">
+                                    <Grid>
+                                        <Image x:Name="NormalImage" Source="{TemplateBinding  NormalImageSource}" Stretch="Uniform" 
+                                       Width="{TemplateBinding ImageWidth}" Height="{TemplateBinding ImageHeight}" >
+                                        </Image>
+                                        <Image x:Name="SelectImage"  Stretch="Uniform" Visibility="Collapsed"
+                                       Width="{TemplateBinding ImageWidth}" Height="{TemplateBinding ImageHeight}" Source="{TemplateBinding SelectImageSource}">
+                                        </Image>
+                                    </Grid>
+                                    <ContentPresenter x:Name="contentPresenter" 
+                                              Focusable="False"  
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                              RecognizesAccessKey="True" 
+                                              Margin="{TemplateBinding StackPanelMargin}"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                </StackPanel>
+                                <Grid.Effect>
+                                    <DropShadowEffect Color="{TemplateBinding Background}" Direction="270" ShadowDepth="4" BlurRadius="10" Opacity="0.3" />
+                                </Grid.Effect>
                             </Grid>
                             <ControlTemplate.Triggers>
-                                <Trigger Property ="IsPressed" Value ="True">
+                                <Trigger Property="IsDefaulted" Value="true">
+                                    <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter Property="Background" TargetName="border" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource UButtonControlPropertyConverter},ConverterParameter=MouseOverBackground}"/>
+                                    <Setter Property="BorderBrush" TargetName="border" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource UButtonControlPropertyConverter},ConverterParameter=MouseOverBorderBrush}"/>
+                                    <Setter  Property="TextElement.Foreground" TargetName="contentPresenter"  Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource UButtonControlPropertyConverter},ConverterParameter=MouseOverForeground}"/>
+                                    <Setter Property="BorderThickness" TargetName="border" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource UButtonControlPropertyConverter},ConverterParameter=MouseOverThickness}"/>
+                                    <Setter TargetName="SelectImage" Property="Visibility" Value="Visible"></Setter>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="true">
+                                    <Setter Property="Background" TargetName="border" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource UButtonControlPropertyConverter},ConverterParameter=PressedBackground}"/>
+                                    <Setter Property="BorderBrush" TargetName="border" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource UButtonControlPropertyConverter},ConverterParameter=PressedBorderBrush}"/>
+                                    <Setter  Property="TextElement.Foreground" TargetName="contentPresenter" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource UButtonControlPropertyConverter},ConverterParameter=PressedForeground}"/>
+                                    <Setter Property="BorderThickness" TargetName="border" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource UButtonControlPropertyConverter},ConverterParameter=PressedThickness}"/>
                                     <Setter TargetName="RootGrid" Property="RenderTransform">
                                         <Setter.Value>
                                             <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
                                         </Setter.Value>
                                     </Setter>
                                 </Trigger>
-
-                                <Trigger Property ="IsEnabled" Value ="False">
-                                    <Setter Property="Button.Effect">
-                                        <Setter.Value>
-                                            <effect:GrayscaleEffect />
-                                        </Setter.Value>
-                                    </Setter>
+                                <Trigger Property="IsEnabled" Value="false">
+                                    <Setter Property="Background" TargetName="border" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource UButtonControlPropertyConverter},ConverterParameter=DisabledBackground}"/>
+                                    <Setter Property="BorderBrush" TargetName="border" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource UButtonControlPropertyConverter},ConverterParameter=DisabledBorderBrush}"/>
+                                    <Setter  Property="TextElement.Foreground" TargetName="contentPresenter" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource UButtonControlPropertyConverter},ConverterParameter=DisabledForeground}"/>
+                                    <Setter Property="BorderThickness" TargetName="border" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource UButtonControlPropertyConverter},ConverterParameter=DisabledThickness}"/>
+                                    <Setter Property="DropShadowEffect.Color" TargetName="RootGrid" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Converter={StaticResource UButtonControlPropertyConverter},ConverterParameter=DisabledBackground}"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
